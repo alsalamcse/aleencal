@@ -40,10 +40,81 @@ public class MainCalcActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View view)
     {
+
         String stNum1=etNum.getText().toString();
-        double num1=Double.parseDouble(stNum1);
-        if(view==btnPlase){
-            
+        String stNum2=etNum2.getText().toString();
+
+        if(view==btnPlase)
+        {
+
+            tvEshara.setText("+");
+        }
+        if(view==btnMines)
+        {
+
+            tvEshara.setText("-");
+
+        }
+        if (view==btnFe)
+        {
+
+            tvEshara.setText("*");
+
+        }
+        if (view==btn3la)
+        {
+
+            tvEshara.setText("/");
+
+        }
+        if (view==btnQoa)
+        {
+
+            tvEshara.setText("^");
+
+        }
+        if (view==btnEq)
+        {
+            boolean isOk=true;
+            if (stNum1.length()==0)
+            {
+                isOk=false;
+                etNum.setError("give number");
+            }
+            if (stNum2.length()==0)
+            {
+                isOk=false;
+                etNum2.setError("give number");
+            }
+            double num1=Double.parseDouble(stNum1);
+            double num2=Double.parseDouble(stNum2);
+            String es=tvEshara.getText().toString();
+            switch (es)
+            {
+                case "+":
+                    etResult.setText((num1+num2)+"");
+                    break;
+                case "-":
+                    etResult.setText((num1-num2)+"");
+                    break;
+                case "*":
+                    etResult.setText((num1*num2)+"");
+                    break;
+                case "/":
+                    etResult.setText((num1/num2)+"");
+                    break;
+                case "^":
+                    etResult.setText((Math.pow(num1,num2))+"");
+                    break;
+            }
+        }
+        if (view==btnClear)
+        {
+          etNum.setText("");
+          etNum2.setText("");
+          etResult.setText("");
+          tvEshara.setText("?");
+
         }
     }
 }
