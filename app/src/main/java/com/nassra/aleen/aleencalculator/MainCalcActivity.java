@@ -12,6 +12,7 @@ public class MainCalcActivity extends AppCompatActivity implements View.OnClickL
     private TextView tvEshara;
     private EditText etNum,etNum2,etResult;
     private Button btnPlase,btnMines,btnFe,btn3la,btnQoa,btnEq,btnClear;
+    char chop=' ';
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,40 +42,48 @@ public class MainCalcActivity extends AppCompatActivity implements View.OnClickL
     public void onClick(View view)
     {
 
-        String stNum1=etNum.getText().toString();
-        String stNum2=etNum2.getText().toString();
+
+
 
         if(view==btnPlase)
         {
 
             tvEshara.setText("+");
+            chop='+';
         }
         if(view==btnMines)
         {
 
             tvEshara.setText("-");
+            chop='-';
 
         }
         if (view==btnFe)
         {
 
             tvEshara.setText("*");
+            chop='*';
 
         }
         if (view==btn3la)
         {
 
             tvEshara.setText("/");
+            chop='/';
 
         }
         if (view==btnQoa)
         {
 
             tvEshara.setText("^");
+            chop='^';
 
         }
         if (view==btnEq)
         {
+            String stNum1=etNum.getText().toString();
+            String stNum2=etNum2.getText().toString();
+
             boolean isOk=true;
             if (stNum1.length()==0)
             {
@@ -86,26 +95,28 @@ public class MainCalcActivity extends AppCompatActivity implements View.OnClickL
                 isOk=false;
                 etNum2.setError("give number");
             }
-            double num1=Double.parseDouble(stNum1);
-            double num2=Double.parseDouble(stNum2);
-            String es=tvEshara.getText().toString();
-            switch (es)
-            {
-                case "+":
-                    etResult.setText((num1+num2)+"");
-                    break;
-                case "-":
-                    etResult.setText((num1-num2)+"");
-                    break;
-                case "*":
-                    etResult.setText((num1*num2)+"");
-                    break;
-                case "/":
-                    etResult.setText((num1/num2)+"");
-                    break;
-                case "^":
-                    etResult.setText((Math.pow(num1,num2))+"");
-                    break;
+            if (isOk) {
+                double num1=Double.parseDouble(stNum1);
+                double num2=Double.parseDouble(stNum2);
+                String es=tvEshara.getText().toString();
+                switch (es)
+                {
+                    case "+":
+                        etResult.setText((num1+num2)+"");
+                        break;
+                    case "-":
+                        etResult.setText((num1-num2)+"");
+                        break;
+                    case "*":
+                        etResult.setText((num1*num2)+"");
+                        break;
+                    case "/":
+                        etResult.setText((num1/num2)+"");
+                        break;
+                    case "^":
+                        etResult.setText((Math.pow(num1,num2))+"");
+                        break;
+                }
             }
         }
         if (view==btnClear)
